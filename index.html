@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LogiTrack par apne shipment ko track karein.">
+  <title>LogiTrack — Shipment Tracking</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      color: #172554;
+      background: #f1f5f9;
+    }
+    header, main, footer { padding: 24px; }
+    header, footer { background: white; text-align: center; }
+    main { min-height: 75vh; display: grid; place-items: center; }
+    .card {
+      width: min(100%, 520px);
+      padding: 32px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px #0f172a18;
+    }
+    h1 { margin-top: 0; }
+    p { color: #64748b; line-height: 1.6; }
+    label { display: block; margin: 20px 0 8px; font-weight: 600; }
+    .row { display: flex; gap: 8px; }
+    input, button { padding: 12px; font: inherit; border-radius: 8px; }
+    input { min-width: 0; flex: 1; border: 1px solid #cbd5e1; }
+    button { color: white; background: #2563eb; border: 0; cursor: pointer; }
+    button:hover { background: #1d4ed8; }
+    #message { min-height: 1.5em; color: #1d4ed8; }
+    @media (max-width: 460px) {
+      .row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header><strong>LogiTrack</strong></header>
+  <main>
+    <section class="card">
+      <h1>Apna shipment track karein</h1>
+      <p>Apna tracking number daalein aur shipment ki jaankari paane ke liye aage badhein.</p>
+      <form id="tracking-form">
+        <label for="tracking-number">Tracking number</label>
+        <div class="row">
+          <input id="tracking-number" name="tracking-number" type="text" placeholder="Jaise: LT-123456" required>
+          <button type="submit">Track karein</button>
+        </div>
+      </form>
+      <p id="message" aria-live="polite"></p>
+      <p>Note: Yeh basic demo template hai. Real tracking ke liye backend ya tracking API connect karni hogi.</p>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> LogiTrack</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('tracking-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const number = document.getElementById('tracking-number').value.trim();
+      document.getElementById('message').textContent =
+        'Demo: ' + number + ' ke liye live tracking abhi connect nahi hai.';
+    });
+  </script>
+</body>
+</html>
